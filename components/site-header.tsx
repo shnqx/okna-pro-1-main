@@ -1,11 +1,13 @@
 'use client';
 
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Phone, Ruler } from 'lucide-react';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { cn } from '@/lib/utils';
+import logoImage from '../pics/Logo.png';
 
 const navLinks = [
   { href: '/#configurator', label: 'Конфигуратор' },
@@ -28,26 +30,22 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-50 transition-all duration-500',
+        'fixed inset-x-0 top-3 z-50 transition-all duration-500',
         scrolled ? 'glass-strong shadow-lg shadow-black/5' : 'bg-transparent'
       )}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
-        <Link href="/" className="group flex items-center gap-2.5" aria-label="Окна ПРО — на главную">
-          <div className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-accent to-orange-600 shadow-lg shadow-accent/30">
-            <div className="absolute inset-[3px] rounded-lg bg-background/90" />
-            <div className="absolute inset-[6px] rounded-md border border-accent/40" />
-            <div className="absolute left-1/2 top-[6px] h-[calc(50%-3px)] w-px -translate-x-1/2 bg-accent/40" />
-            <div className="absolute left-[6px] top-1/2 h-px w-[calc(50%-3px)] -translate-y-1/2 bg-accent/40" />
-          </div>
-          <div className="flex flex-col leading-none">
-            <span className="font-display text-base font-extrabold tracking-tight text-foreground">
-              Окна <span className="text-accent">ПРО</span>
-            </span>
-            <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
-              Санкт-Петербург
-            </span>
+        <Link href="/" className="group flex items-center" aria-label="Окна ПРО — на главную">
+          <div className="relative h-14 w-24 overflow-hidden rounded-md border border-border/50 bg-white shadow-sm sm:h-16 sm:w-28">
+            <Image
+              src={logoImage}
+              alt="Логотип Окна ПРО"
+              fill
+              sizes="(max-width: 640px) 96px, 112px"
+              className="object-contain p-1.5 sm:p-2"
+              priority
+            />
           </div>
         </Link>
 
